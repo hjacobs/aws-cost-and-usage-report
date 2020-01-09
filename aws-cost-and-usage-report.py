@@ -13,7 +13,9 @@ now = datetime.datetime.utcnow()
 start = (now - datetime.timedelta(days=args.days)).strftime('%Y-%m-%d')
 end = now.strftime('%Y-%m-%d')
 
-cd = boto3.client('ce', 'us-east-1')
+# to use a specific profile e.g. 'dev'
+session = boto3.session.Session(profile_name='dev')
+cd = session.client('ce', 'us-east-1')
 
 results = []
 
